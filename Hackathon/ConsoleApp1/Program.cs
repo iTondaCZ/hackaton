@@ -4,18 +4,24 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("====MULTIFUNKČNÍ APLIKACE====");
-            Console.WriteLine("Co chceš dělat?");
-            Console.WriteLine("1) Kalkulačka normální, 2D, 3D");
-            Console.WriteLine("2) Generátor hesel");
-            Console.WriteLine("3) Složité matematické příklady");
-            string aplikace = Console.ReadLine();
-            int aplikaceInt;
-            bool prevedeno = int.TryParse(aplikace, out aplikaceInt);
-            if (prevedeno)
+            while (true)
             {
-                if (aplikaceInt == 1)
+                Console.ResetColor();
+                Console.CursorVisible = false;
+                Console.Clear();
+                Console.WriteLine("====MULTIFUNKČNÍ APLIKACE====");
+                Console.WriteLine("Co chceš dělat?");
+                Console.WriteLine("1) Kalkulačka normální, 2D, 3D");
+                Console.WriteLine("2) Generátor hesel");
+                Console.WriteLine("3) Složité matematické příklady");
+                Console.WriteLine("4) Ukončení programu");
+                ConsoleKeyInfo cki;
+                cki = Console.ReadKey(true);
+                int aplikaceInt;
+                if (cki.Key == ConsoleKey.NumPad1 || cki.Key == ConsoleKey.OemPlus)
                 {
+                    Console.Clear();
+                    Console.CursorVisible = true;
                     Console.WriteLine("===KALKULAČKA===");
                     Console.WriteLine("Co chceš dělat? Zmáčkni číslo dané činnosti");
                     Console.WriteLine("1) Sčítání, odčítání, násobení a dělení, dělení jídla");
@@ -85,6 +91,7 @@
                         }
                         else if (moznostInt == 2) // 2d tvary
                         {
+
                             Console.WriteLine("Vyber tvar: 1) Obdélník 2) Kruh");
                             moznost = Console.ReadLine();
                             bool success2 = int.TryParse(moznost, out moznostInt);
@@ -131,6 +138,7 @@
                                 else Console.WriteLine("Neplatná volba tvaru.");
                             }
                             else Console.WriteLine("Něco jsi udělal špatně");
+
                         }
                         else if (moznostInt == 3) // 3d tvary
                         {
@@ -207,15 +215,23 @@
                         else Console.WriteLine("Neznámá volba.");
                     }
                     else Console.WriteLine("Buď jsi se překlikl nebo nemáš oči");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("Pro ukončení kalkulačky stiskněte jakoukoli klávesu.");
+                    Console.CursorVisible = false;
+                    Console.ReadKey();
                 }
-                if (aplikaceInt == 2) // generátor hesel
+                else if (cki.Key == ConsoleKey.NumPad2) // generátor hesel
                 {
+                    Console.Clear();
+                    Console.CursorVisible = true;
                     Console.WriteLine("===GENERÁTOR HESEL===");
                     Console.Write("Zadejte požadovanou délku hesla: ");
                     int delka;
                     while (!int.TryParse(Console.ReadLine(), out delka) || delka <= 0)
                     {
                         Console.Write("Neplatná hodnota!");
+
                     }
 
                     Console.Write("Chcete použít speciální znaky? (a/n): ");
@@ -244,10 +260,19 @@
                         }
                     }
                     while (pouzitSpecialni && !heslo.Any(c => specialniZnaky.Contains(c)));
-                    Console.WriteLine("Vygenerované heslo: " + heslo);
+                    Console.Write("Vygenerované heslo: ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(heslo);
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("Pro ukončení generátoru hesel stiskněte jakoukoli klávesu.");
+                    Console.CursorVisible = false;
+                    Console.ReadKey();
                 }
-                if (aplikaceInt == 3) // Matematické příklady
+                else if (cki.Key == ConsoleKey.NumPad3)
                 {
+                    Console.Clear();
+                    Console.CursorVisible = true;
                     Console.WriteLine("===PROCVIČOVÁNÍ MATEMATIKY===");
                     Random rnd = new Random();
 
@@ -296,15 +321,30 @@
                         tripleincrement1 = tripleincrement1 + 10;//unexpectedly, buffs the triple increment gain
                         tripleincrement2 = tripleincrement2 + 5;
                     }
-
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("Pro ukončení procvičování matematiky stiskněte jakoukoli klávesu.");
+                    Console.CursorVisible = false;
+                    Console.ReadKey();
+                }
+                else if (cki.Key == ConsoleKey.NumPad4)
+                {
+                    Console.Clear();
+                    Console.CursorVisible = true;
+                    //konec programu
+                    Console.WriteLine("Úspěšně jste ukončili váš program!");
+                    Environment.Exit(0);
                 }
 
-
-
-               
+                else
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Zadal jsi špatnou klávesu");
+                    Thread.Sleep(1000);
+                }
 
             }
-            Console.WriteLine("Buď konec programu, nebo se něco stalo špatně");
         }
     }
 }
