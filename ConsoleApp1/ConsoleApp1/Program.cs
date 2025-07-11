@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Multifunkční aplikace");
+            Console.WriteLine("====MULTIFUNKČNÍ APLIKACE====");
             Console.WriteLine("Co chceš dělat?");
             Console.WriteLine("1) Kalkulačka normální, 2D, 3D");
             Console.WriteLine("2) Generátor hesel");
@@ -16,7 +16,7 @@
             {
                 if (aplikaceInt == 1)
                 {
-                    Console.WriteLine("KALKULAČKA");
+                    Console.WriteLine("===KALKULAČKA===");
                     Console.WriteLine("Co chceš dělat? Zmáčkni číslo dané činnosti");
                     Console.WriteLine("1) Sčítání, odčítání, násobení a dělení, dělení jídla");
                     Console.WriteLine("2) Počítání obsahu a obvodu");
@@ -248,6 +248,7 @@
                 }
                 if (aplikaceInt == 3) // Matematické příklady
                 {
+                    Console.WriteLine("===PROCVIČOVÁNÍ MATEMATIKY===");
                     Random rnd = new Random();
 
                     int increment1 = 10;//base number 1 and 2
